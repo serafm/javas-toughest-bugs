@@ -15,14 +15,14 @@ public class Main {
 }
 
 abstract class PaymentMethod {
-  private static double transactionFee = 0.0;
+  private double transactionFee = 0.0;
 
   public PaymentMethod() {
   }
 
   public abstract void processPayment(double amount);
 
-  public static double getTransactionFee() {
+  public double getTransactionFee() {
     return transactionFee;
   }
 
@@ -37,10 +37,10 @@ class CreditCardPayment extends PaymentMethod {
   }
 
   public void processPayment(double amount) {
-    double totalAmount = amount + PaymentMethod.getTransactionFee();
+    double totalAmount = amount + getTransactionFee();
     System.out.println("Processing credit card payment for amount $"
         + amount + " with transaction fee $" +
-        PaymentMethod.getTransactionFee() + ", total: $" + totalAmount);
+        getTransactionFee() + ", total: $" + totalAmount);
   }
 }
 
@@ -50,10 +50,10 @@ class PayPalPayment extends PaymentMethod {
   }
 
   public void processPayment(double amount) {
-    double totalAmount = amount + PaymentMethod.getTransactionFee();
+    double totalAmount = amount + getTransactionFee();
     System.out.println("Processing PayPal payment for amount $" +
         amount + " with transaction fee $" +
-        PaymentMethod.getTransactionFee()
+        getTransactionFee()
         + ", total: $" + totalAmount);
   }
 }
